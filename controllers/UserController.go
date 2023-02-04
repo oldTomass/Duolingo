@@ -47,9 +47,9 @@ func Login(w http.ResponseWriter, r *http.Request) {
 			c.Path = "/"
 			http.SetCookie(w, c)
 		}
-
 		json.NewEncoder(w).Encode(user)
 	} else {
+		w.WriteHeader(http.StatusForbidden)
 		json.NewEncoder(w).Encode("fail")
 	}
 }
